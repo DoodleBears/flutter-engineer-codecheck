@@ -17,8 +17,7 @@ class GitHubApi {
     );
 
     if (response.statusCode == 200) {
-      final body = json.decode(response.body) as Map<String,
-          dynamic>; // Ensure the decoded body is treated as a Map<String, dynamic>
+      final body = json.decode(response.body) as Map<String, dynamic>;
 
       return body;
     } else {

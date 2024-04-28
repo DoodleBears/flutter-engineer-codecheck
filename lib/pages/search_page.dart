@@ -12,6 +12,13 @@ final searchBarVisibleProvider = StateProvider<bool>((ref) => true);
 class SearchPage extends ConsumerWidget {
   const SearchPage({super.key});
 
+  void search(WidgetRef ref) {
+    String queryString = ref.read(githubSearchProvider.notifier).currentQuery;
+    if (queryString.isNotEmpty) {
+      ref.read(githubSearchProvider.notifier).searchRepositories(queryString);
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = ScrollController();
@@ -27,7 +34,7 @@ class SearchPage extends ConsumerWidget {
 
       if (scrollController.position.userScrollDirection ==
           ScrollDirection.reverse) {
-        // Customize this threshold as needed
+      
         if (ref.read(searchBarVisibleProvider)) {
           ref.read(searchBarVisibleProvider.notifier).state = false;
         }
@@ -43,6 +50,7 @@ class SearchPage extends ConsumerWidget {
       appBar: AppBar(title: const Text('GitHub Repository Search')),
       body: Stack(
         children: [
+          // MARK: Repositories List
           Consumer(
             builder: (context, ref, _) {
               final state = ref.watch(githubSearchProvider);
@@ -107,6 +115,7 @@ class SearchPage extends ConsumerWidget {
               );
             },
           ),
+          // MARK: Search Bar
           AnimatedPositioned(
             bottom: ref.watch(searchBarVisibleProvider) ? 18.0 : -200.0,
             left: 10.0,
@@ -125,6 +134,7 @@ class SearchPage extends ConsumerWidget {
                           ref.read(githubSearchProvider.notifier).currentQuery =
                               value;
                         },
+                        onSubmitted: (_) => search(ref),
                         decoration: const InputDecoration(
                           labelText: 'Search GitHub Repositories',
                           border: OutlineInputBorder(
@@ -136,17 +146,7 @@ class SearchPage extends ConsumerWidget {
                     const SizedBox(width: 10.0),
                     IconButton(
                       icon: const Icon(Icons.search),
-                      onPressed: () {
-                        String queryString = ref
-                            .read(githubSearchProvider.notifier)
-                            .currentQuery;
-                        if (queryString.isNotEmpty) {
-                          // Navigator.pop(context);
-                          ref
-                              .read(githubSearchProvider.notifier)
-                              .searchRepositories(queryString);
-                        }
-                      },
+                      onPressed: () => search(ref),
                     ),
                   ],
                 ),
