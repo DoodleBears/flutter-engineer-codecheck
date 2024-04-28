@@ -20,15 +20,6 @@ class GitHubApi {
       final body = json.decode(response.body) as Map<String,
           dynamic>; // Ensure the decoded body is treated as a Map<String, dynamic>
 
-      final List items = body['items'] as List; // Cast items explicitly
-
-      final bool incompleteResults = body['incomplete_results']
-          as bool; // Cast incompleteResults explicitly
-
-      logger.i(items.length);
-      logger.i(incompleteResults);
-      logger.i(items);
-
       return body;
     } else {
       throw Exception('Failed to load repositories');
