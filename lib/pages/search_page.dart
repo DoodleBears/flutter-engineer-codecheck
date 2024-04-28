@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_engineer_codecheck/state/github_search_expansion_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_engineer_codecheck/state/github_search_notifier.dart';
 import 'package:logger/logger.dart';
@@ -9,6 +10,7 @@ class SearchPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = ScrollController();
+    final expansionNotifier = ref.watch(itemExpansionProvider.notifier);
 
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
@@ -24,8 +26,8 @@ class SearchPage extends ConsumerWidget {
       body: Consumer(
         builder: (context, ref, _) {
           final state = ref.watch(githubSearchProvider);
+          final expandedItems = ref.watch(itemExpansionProvider);
 
-          // Check if the state is loading
           if (state is AsyncLoading) {
             return const Center(child: CircularProgressIndicator());
           }
@@ -36,12 +38,44 @@ class SearchPage extends ConsumerWidget {
               itemCount: repositories.length,
               itemBuilder: (context, index) {
                 final repo = repositories[index];
-                return Card(
-                  elevation: 1.0,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 12.0),
-                    child: Text(repo.fullName),
+                return GestureDetector(
+                  onTap: () {
+                    logger.d("touch $index");
+                    expansionNotifier.toggleExpansion(index);
+                  },
+                  child: Card(
+                    elevation: 1.0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 12.0),
+                      child: expandedItems[index]
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundImage:
+                                          NetworkImage(repo.owner!.avatarUrl),
+                                    ),
+                                    const SizedBox(width: 10.0),
+                                    Column(
+                                      children: [
+                                        Text(repo.fullName),
+                                        Text(
+                                            'Language: ${repo.language ?? "Unknown"}'),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                Text('Stars: ${repo.stargazersCount}'),
+                                Text('Watchers: ${repo.watchersCount}'),
+                                Text('Forks: ${repo.forksCount}'),
+                                Text('Open issues: ${repo.openIssuesCount}'),
+                              ],
+                            )
+                          : Text(repo.fullName),
+                    ),
                   ),
                 );
               },

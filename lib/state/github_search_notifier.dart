@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_engineer_codecheck/api/github.dart';
+import 'package:flutter_engineer_codecheck/state/github_search_expansion_notifier.dart';
 import 'package:flutter_engineer_codecheck/models/github_repository.dart';
 
 final githubSearchProvider =
@@ -33,8 +34,13 @@ class GitHubSearchNotifier extends StateNotifier<AsyncValue<List<Item>>> {
 
       if (isLoadMore) {
         state = state.whenData((list) => list..addAll(repositories.items));
+        _read(itemExpansionProvider.notifier)
+            .extendExpansions(repositories.items.length);
+        // Extend the expanded items list
       } else {
         state = AsyncValue.data(repositories.items);
+        _read(itemExpansionProvider.notifier)
+            .initializeExpansions(repositories.items.length);
       }
     } catch (e, stackTrace) {
       state = AsyncValue.error(e, stackTrace);

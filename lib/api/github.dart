@@ -8,7 +8,7 @@ class GitHubApi {
   final String baseUrl = 'https://api.github.com/search/repositories';
 
   Future<Map<String, dynamic>> searchRepositories(String query, int page,
-      {int perPage = 20}) async {
+      {int perPage = 10}) async {
     final response = await http.get(
       Uri.parse('$baseUrl?q=$query&page=$page&per_page=$perPage'),
       headers: {

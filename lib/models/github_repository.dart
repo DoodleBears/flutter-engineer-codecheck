@@ -40,8 +40,16 @@ class Item {
   DateTime createdAt;
   @JsonKey(name: 'updated_at')
   DateTime updatedAt;
+  @JsonKey(name: 'stargazers_count')
+  int stargazersCount;
+  @JsonKey(name: 'watchers_count')
+  int watchersCount;
   @JsonKey(name: 'language')
   String? language;
+  @JsonKey(name: 'forks_count')
+  int forksCount;
+  @JsonKey(name: 'open_issues_count')
+  int openIssuesCount;
   @JsonKey(name: 'score')
   int score;
 
@@ -54,7 +62,11 @@ class Item {
     required this.url,
     required this.createdAt,
     required this.updatedAt,
+    required this.stargazersCount,
+    required this.watchersCount,
     required this.language,
+    required this.forksCount,
+    required this.openIssuesCount,
     required this.score,
   });
 

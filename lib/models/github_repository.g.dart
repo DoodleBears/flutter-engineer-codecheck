@@ -33,7 +33,11 @@ Item _$ItemFromJson(Map<String, dynamic> json) => Item(
       url: json['url'] as String,
       createdAt: DateTime.parse(json['created_at'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
+      stargazersCount: (json['stargazers_count'] as num).toInt(),
+      watchersCount: (json['watchers_count'] as num).toInt(),
       language: json['language'] as String?,
+      forksCount: (json['forks_count'] as num).toInt(),
+      openIssuesCount: (json['open_issues_count'] as num).toInt(),
       score: (json['score'] as num).toInt(),
     );
 
@@ -46,7 +50,11 @@ Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
       'url': instance.url,
       'created_at': instance.createdAt.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
+      'stargazers_count': instance.stargazersCount,
+      'watchers_count': instance.watchersCount,
       'language': instance.language,
+      'forks_count': instance.forksCount,
+      'open_issues_count': instance.openIssuesCount,
       'score': instance.score,
     };
 
