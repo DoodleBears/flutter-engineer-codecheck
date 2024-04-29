@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_engineer_codecheck/pages/search_page.dart';
+import 'package:flutter_engineer_codecheck/pages/github_search_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {

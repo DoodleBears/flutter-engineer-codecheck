@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_engineer_codecheck/state/github_search_expansion_notifier.dart';
+import 'package:flutter_engineer_codecheck/state/github_search_page/github_repository_expansion_state.dart';
+import 'package:flutter_engineer_codecheck/state/github_search_page/search_bar_visible_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_engineer_codecheck/state/github_search_notifier.dart';
+import 'package:flutter_engineer_codecheck/state/github_search_page/github_search_result_state.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
-
-final searchBarVisibleProvider = StateProvider<bool>((ref) => true);
 
 class SearchPage extends ConsumerWidget {
   const SearchPage({super.key});
@@ -23,6 +22,7 @@ class SearchPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final scrollController = ScrollController();
     final expansionNotifier = ref.watch(itemExpansionProvider.notifier);
+    final expandedItems = ref.watch(itemExpansionProvider);
 
     scrollController.addListener(() {
       // MARK: Infinity Scroll
@@ -56,14 +56,13 @@ class SearchPage extends ConsumerWidget {
           // MARK: Repositories List
           Consumer(
             builder: (context, ref, _) {
-              final state = ref.watch(githubSearchProvider);
-              final expandedItems = ref.watch(itemExpansionProvider);
+              final searchResultState = ref.watch(githubSearchProvider);
 
-              if (state is AsyncLoading) {
+              if (searchResultState is AsyncLoading) {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              return state.when(
+              return searchResultState.when(
                 data: (repositories) => ListView.builder(
                   padding: const EdgeInsets.only(
                       left: 8.0, right: 8.0, bottom: 200.0),

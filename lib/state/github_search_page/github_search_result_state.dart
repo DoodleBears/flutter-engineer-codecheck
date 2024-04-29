@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_engineer_codecheck/api/github.dart';
-import 'package:flutter_engineer_codecheck/state/github_search_expansion_notifier.dart';
+import 'package:flutter_engineer_codecheck/state/github_search_page/github_repository_expansion_state.dart';
 import 'package:flutter_engineer_codecheck/models/github_repository.dart';
 
 final githubSearchProvider =
@@ -10,10 +10,17 @@ final githubSearchProvider =
 class GitHubSearchNotifier extends StateNotifier<AsyncValue<List<Item>>> {
   final T Function<T>(ProviderListenable<T>) _read;
   int _page = 1;
-  String currentQuery = '';
+  String _currentQuery = '';
   bool hasMore = true;
 
   GitHubSearchNotifier(this._read) : super(const AsyncValue.data([]));
+
+  String get currentQuery => _currentQuery;
+  set currentQuery(String value) {
+    if (_currentQuery != value) {
+      _currentQuery = value;
+    }
+  }
 
   Future<void> searchRepositories(String query,
       {bool isLoadMore = false}) async {
