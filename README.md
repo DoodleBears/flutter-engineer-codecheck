@@ -1,3 +1,20 @@
+# 説明
+1. [動画 Folder](https://drive.google.com/drive/folders/1VXvK5dELFEW-RD6UB0F6Yxy36O4wF7V9?usp=sharing)
+2. 50% ~ code is written by `Cursor` (w/gpt-4-turbo-2024-04-09 and claude-3-opus-20240229)
+3. Prototype UI/UX design is done using Figma
+4. Git branching rule
+   1. Issue with corresponding feature branch (or "..." branch)
+### All code done in **16 hours**
+#### Coding: **13.5 hours**
+
+1. Unit Test: **6 hours**
+2. l10n: **1 hour**
+3. View (UI) and Logic (API): **4.5 hours**
+4. Config: **0.5 hour**
+
+#### Search & Learn: **2.5 hours**
+
+
 # 株式会社ゆめみ Flutter エンジニアコードチェック課題
 
 本プロジェクトは株式会社ゆめみ（以下弊社）が、弊社に Flutter エンジニアを希望する方に出す課題用のプロジェクトです。 本課題が与えられた方は、以下を詳しく読んだ上で課題に取り組んでください。
