@@ -25,6 +25,7 @@ class SearchPage extends ConsumerWidget {
     final expansionNotifier = ref.watch(itemExpansionProvider.notifier);
 
     scrollController.addListener(() {
+      // MARK: Infinity Scroll
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
         ref.read(githubSearchProvider.notifier).searchRepositories(
@@ -32,9 +33,9 @@ class SearchPage extends ConsumerWidget {
             isLoadMore: true);
       }
 
+      // MARK: Auto show/hide search bar
       if (scrollController.position.userScrollDirection ==
           ScrollDirection.reverse) {
-      
         if (ref.read(searchBarVisibleProvider)) {
           ref.read(searchBarVisibleProvider.notifier).state = false;
         }
@@ -47,7 +48,9 @@ class SearchPage extends ConsumerWidget {
     });
 
     return Scaffold(
-      appBar: AppBar(title: const Text('GitHub Repository Search')),
+      appBar: AppBar(
+        title: const Text('GitHub Repository'),
+      ),
       body: Stack(
         children: [
           // MARK: Repositories List
@@ -73,13 +76,13 @@ class SearchPage extends ConsumerWidget {
                         expansionNotifier.toggleExpansion(index);
                       },
                       child: Card(
-                        elevation: 1.0,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12.0, vertical: 12.0),
                           child: expandedItems[index]
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Row(
                                       children: [
@@ -88,12 +91,20 @@ class SearchPage extends ConsumerWidget {
                                               repo.owner!.avatarUrl),
                                         ),
                                         const SizedBox(width: 10.0),
-                                        Column(
-                                          children: [
-                                            Text(repo.fullName),
-                                            Text(
-                                                'Language: ${repo.language ?? "Unknown"}'),
-                                          ],
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                repo.fullName,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                              ),
+                                              Text(
+                                                  'Language: ${repo.language ?? "Unknown"}'),
+                                            ],
+                                          ),
                                         )
                                       ],
                                     ),
@@ -123,6 +134,7 @@ class SearchPage extends ConsumerWidget {
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
             child: Card(
+              elevation: 4.0,
               color: Colors.white,
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
@@ -135,11 +147,30 @@ class SearchPage extends ConsumerWidget {
                               value;
                         },
                         onSubmitted: (_) => search(ref),
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           labelText: 'Search GitHub Repositories',
-                          border: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(8.0))),
+                          labelStyle: const TextStyle(
+                            fontSize: 14.0,
+                          ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8.0),
+                            ),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 10,
+                            ),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8.0),
+                            ),
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          fillColor: Colors.grey[200],
+                          filled: true,
                         ),
                       ),
                     ),
