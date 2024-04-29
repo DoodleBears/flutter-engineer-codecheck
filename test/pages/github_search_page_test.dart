@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_engineer_codecheck/api/github_api.dart';
 import 'package:flutter_engineer_codecheck/state/github_search_page/github_search_result_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -9,29 +9,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_engineer_codecheck/pages/github_search_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flutter_engineer_codecheck/api/github_api.dart';
 
-class MockGitHubApi extends Mock implements GitHubApi {
-  @override
-  Future<Map<String, dynamic>> searchRepositories(String query, int page,
-      {int perPage = 10}) async {
-    final file = File('test_resources/github_search_result.json');
-    String jsonString = await file.readAsString();
-    final json = jsonDecode(jsonString);
-    return json;
-  }
-}
+class MockGitHubApi extends Mock implements GitHubApi {}
 
 void main() {
   late String jsonString;
   late Map<String, dynamic> json;
-  final mockGitHubApi = MockGitHubApi();
 
-  setUpAll(() async {
+  // before every test
+  setUp(() async {
     final file = File('test_resources/github_search_result.json');
     jsonString = await file.readAsString();
     json = jsonDecode(jsonString);
-    print(json['total_count']);
+  });
+
+  group('Unit Test', () {
+    test('githubApiProvider should provide a GitHubApi instance', () {
+      final container = ProviderContainer();
+      final githubApi = container.read(githubApiProvider);
+      expect(githubApi, isA<GitHubApi>());
+    });
   });
 
   Widget createTestWidget(Widget child, ProviderContainer container) {

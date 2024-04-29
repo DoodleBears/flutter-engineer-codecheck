@@ -25,6 +25,7 @@ class GitHubApi {
 
       return body;
     } else {
+      logger.e(response.statusCode.toString() + response.body);
       throw Exception('Failed to load repositories');
     }
   }
