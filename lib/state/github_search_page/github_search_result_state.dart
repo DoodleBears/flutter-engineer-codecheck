@@ -20,6 +20,8 @@ class GitHubSearchNotifier extends StateNotifier<AsyncValue<List<Item>>> {
   GitHubSearchNotifier(this._read, this._githubApi)
       : super(const AsyncValue.data([]));
 
+  int get page => _page;
+
   String get currentQuery => _currentQuery;
   set currentQuery(String value) {
     if (_currentQuery != value) {
