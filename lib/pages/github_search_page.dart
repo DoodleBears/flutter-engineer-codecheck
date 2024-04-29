@@ -5,6 +5,7 @@ import 'package:flutter_engineer_codecheck/state/github_search_page/search_bar_v
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_engineer_codecheck/state/github_search_page/github_search_result_state.dart';
 import 'package:logger/logger.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 var logger = Logger();
 
@@ -49,7 +50,7 @@ class SearchPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GitHub Repository'),
+        title: Text(AppLocalizations.of(context)!.github_repository),
       ),
       body: Stack(
         children: [
@@ -101,17 +102,20 @@ class SearchPage extends ConsumerWidget {
                                                 maxLines: 1,
                                               ),
                                               Text(
-                                                  'Language: ${repo.language ?? "Unknown"}'),
+                                                  '${AppLocalizations.of(context)!.github_repository}: ${repo.language ?? AppLocalizations.of(context)!.language_unknown}'),
                                             ],
                                           ),
                                         )
                                       ],
                                     ),
-                                    Text('Stars: ${repo.stargazersCount}'),
-                                    Text('Watchers: ${repo.watchersCount}'),
-                                    Text('Forks: ${repo.forksCount}'),
                                     Text(
-                                        'Open issues: ${repo.openIssuesCount}'),
+                                        '${AppLocalizations.of(context)!.stars}: ${repo.stargazersCount}'),
+                                    Text(
+                                        '${AppLocalizations.of(context)!.watchers}: ${repo.watchersCount}'),
+                                    Text(
+                                        '${AppLocalizations.of(context)!.forks}: ${repo.forksCount}'),
+                                    Text(
+                                        '${AppLocalizations.of(context)!.open_issues}: ${repo.openIssuesCount}'),
                                   ],
                                 )
                               : Text(repo.fullName),
@@ -147,7 +151,8 @@ class SearchPage extends ConsumerWidget {
                         },
                         onSubmitted: (_) => search(ref),
                         decoration: InputDecoration(
-                          labelText: 'Search GitHub Repositories',
+                          labelText: AppLocalizations.of(context)!
+                              .search_github_repositories,
                           labelStyle: const TextStyle(
                             fontSize: 14.0,
                           ),

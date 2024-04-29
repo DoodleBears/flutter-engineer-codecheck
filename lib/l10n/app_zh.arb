@@ -1,0 +1,32 @@
+{
+  "@@locale": "zh",
+
+  "github_repository": "GitHub 仓库",
+  "@github_repository": {
+    "description": "GitHub 仓库标识符的标签。"
+  },
+  "search_github_repositories": "搜索 GitHub 仓库",
+  "@search_github_repositories": {
+    "description": "用于查找 GitHub 仓库的搜索栏的标签。"
+  },
+  "language_unknown": "未知",
+  "@language_unknown": {
+    "description": "当仓库的编程语言未指定时显示的文本。"
+  },
+  "stars": "星星",
+  "@stars": {
+    "description": "仓库收到的星星数量的标签。"
+  },
+  "watchers": "观察者",
+  "@watchers": {
+    "description": "监视仓库的观察者数量的标签。"
+  },
+  "forks": "分支",
+  "@forks": {
+    "description": "仓库拥有的分支数量的标签。"
+  },
+  "open_issues": "未解决的问题",
+  "@open_issues": {
+    "description": "仓库中未解决的问题数量的标签。"
+  }
+}

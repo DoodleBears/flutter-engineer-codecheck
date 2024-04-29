@@ -1,0 +1,32 @@
+{
+  "@@locale": "ja",
+
+  "github_repository": "GitHub リポジトリ",
+  "@github_repository": {
+    "description": "GitHub リポジトリ識別子のラベル。"
+  },
+  "search_github_repositories": "GitHub リポジトリを検索",
+  "@search_github_repositories": {
+    "description": "GitHub リポジトリを見つけるための検索バーのラベル。"
+  },
+  "language_unknown": "不明",
+  "@language_unknown": {
+    "description": "リポジトリのプログラミング言語が指定されていない場合に表示されるテキスト。"
+  },
+  "stars": "スター",
+  "@stars": {
+    "description": "リポジトリが受け取ったスターの数のラベル。"
+  },
+  "watchers": "ウォッチャー",
+  "@watchers": {
+    "description": "リポジトリを監視しているウォッチャーの数のラベル。"
+  },
+  "forks": "フォーク",
+  "@forks": {
+    "description": "リポジトリが持つフォークの数のラベル。"
+  },
+  "open_issues": "未解決の課題",
+  "@open_issues": {
+    "description": "リポジトリ内の未解決の課題の数のラベル。"
+  }
+}
