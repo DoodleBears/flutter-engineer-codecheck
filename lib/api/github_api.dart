@@ -6,10 +6,14 @@ var logger = Logger();
 
 class GitHubApi {
   final String baseUrl = 'https://api.github.com/search/repositories';
+  final http.Client client; // Add a client property
+
+  // Modify the constructor to accept an http.Client
+  GitHubApi({http.Client? client}) : client = client ?? http.Client();
 
   Future<Map<String, dynamic>> searchRepositories(String query, int page,
       {int perPage = 10}) async {
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse('$baseUrl?q=$query&page=$page&per_page=$perPage'),
       headers: {
         'Accept': 'application/vnd.github.v3+json',

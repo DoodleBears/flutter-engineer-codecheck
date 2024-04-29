@@ -1,19 +1,24 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_engineer_codecheck/api/github.dart';
+import 'package:flutter_engineer_codecheck/api/github_api.dart';
 import 'package:flutter_engineer_codecheck/state/github_search_page/github_repository_expansion_state.dart';
 import 'package:flutter_engineer_codecheck/models/github_repository.dart';
 
+// Modify the provider to allow passing a custom GitHubApi instance
+final githubApiProvider = Provider<GitHubApi>((ref) => GitHubApi());
+
 final githubSearchProvider =
     StateNotifierProvider<GitHubSearchNotifier, AsyncValue<List<Item>>>(
-        (ref) => GitHubSearchNotifier(ref.read));
+        (ref) => GitHubSearchNotifier(ref.read, ref.watch(githubApiProvider)));
 
 class GitHubSearchNotifier extends StateNotifier<AsyncValue<List<Item>>> {
   final T Function<T>(ProviderListenable<T>) _read;
+  final GitHubApi _githubApi;
   int _page = 1;
   String _currentQuery = '';
   bool hasMore = true;
 
-  GitHubSearchNotifier(this._read) : super(const AsyncValue.data([]));
+  GitHubSearchNotifier(this._read, this._githubApi)
+      : super(const AsyncValue.data([]));
 
   String get currentQuery => _currentQuery;
   set currentQuery(String value) {
@@ -33,8 +38,7 @@ class GitHubSearchNotifier extends StateNotifier<AsyncValue<List<Item>>> {
     }
 
     try {
-      final results = await _read(gitHubApiProvider)
-          .searchRepositories(currentQuery, _page);
+      final results = await _githubApi.searchRepositories(currentQuery, _page);
 
       final repositories = GitHubRepository.fromJson(results);
       hasMore = repositories.incompleteResults;
@@ -54,5 +58,3 @@ class GitHubSearchNotifier extends StateNotifier<AsyncValue<List<Item>>> {
     }
   }
 }
-
-final gitHubApiProvider = Provider<GitHubApi>((ref) => GitHubApi());
