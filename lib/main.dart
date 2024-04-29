@@ -18,7 +18,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        cardTheme: const CardTheme(
+          color: Colors.white,
+          elevation: 0.0,
+          surfaceTintColor: Colors.white,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          scrolledUnderElevation: BorderSide.strokeAlignCenter,
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.black,
+          background: Colors.grey[200],
+          // secondary: Colors.red,
+          primary: Colors.blue,
+        ),
         useMaterial3: true,
       ),
       home: const SearchPage(),
