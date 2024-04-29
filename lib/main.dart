@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_engineer_codecheck/l10n/l10n.dart';
 import 'package:flutter_engineer_codecheck/pages/github_search_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(
@@ -17,6 +20,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: L10n.all,
       theme: ThemeData(
         cardTheme: const CardTheme(
           color: Colors.white,

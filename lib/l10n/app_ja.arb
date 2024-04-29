@@ -1,0 +1,12 @@
+{
+  "@@locale": "ja",
+
+  "githubSearchPageAppBarTitle": "GitHub リポジトリ",
+  "githubSearchPageTextFieldHint": "GitHub リポジトリを検索",
+  "githubSearchPageRepoLanguage": "言語",
+  "githubSearchPageRepoLanguageUnknown": "不明",
+  "githubSearchPageRepoStars": "スター",
+  "githubSearchPageRepoWatchers": "ウォッチャー",
+  "githubSearchPageRepoForks": "フォーク",
+  "githubSearchPageRepoOpenIssues": "イシュー"
+}

@@ -1,0 +1,37 @@
+{
+  "@@locale": "en",
+
+  "githubSearchPageAppBarTitle": "GitHub Repository",
+  "@githubSearchPageAppBarTitle": {
+    "description": "Label for GitHub repository identifier."
+  },
+  "githubSearchPageTextFieldHint": "Search GitHub Repositories",
+  "@githubSearchPageTextFieldHint": {
+    "description": "Label for the search bar to find GitHub repositories."
+  },
+  "githubSearchPageRepoLanguage": "Language",
+  "@githubSearchPageRepoLanguage": {
+    "description": "Label for the programming language of the repository."
+  },
+  
+  "githubSearchPageRepoLanguageUnknown": "Unknown",
+  "@githubSearchPageRepoLanguageUnknown": {
+    "description": "Text displayed when the programming language of a repository is not specified."
+  },
+  "githubSearchPageRepoStars": "Stars",
+  "@githubSearchPageRepoStars": {
+    "description": "Label for the number of stars a repository has received."
+  },
+  "githubSearchPageRepoWatchers": "Watchers",
+  "@githubSearchPageRepoWatchers": {
+    "description": "Label for the number of watchers monitoring a repository."
+  },
+  "githubSearchPageRepoForks": "Forks",
+  "@githubSearchPageRepoForks": {
+    "description": "Label for the number of forks a repository has."
+  },
+  "githubSearchPageRepoOpenIssues": "Open issues",
+  "@githubSearchPageRepoOpenIssues": {
+    "description": "Label for the number of open issues in a repository."
+  }
+}

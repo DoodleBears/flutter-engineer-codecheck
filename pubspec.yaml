@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   http: ^1.2.1
   flutter_riverpod: ^2.5.1
   json_annotation: ^4.9.0
@@ -39,7 +41,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   logger: ^2.2.0
   riverpod_annotation: ^2.3.5
-  
+  intl: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -53,6 +56,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  generate: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:

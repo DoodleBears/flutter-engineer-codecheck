@@ -1,0 +1,12 @@
+{
+  "@@locale": "zh",
+
+  "githubSearchPageAppBarTitle": "GitHub 仓库",
+  "githubSearchPageTextFieldHint": "搜索 GitHub 仓库",
+  "githubSearchPageRepoLanguage": "语言",
+  "githubSearchPageRepoLanguageUnknown": "未知",
+  "githubSearchPageRepoStars": "星星",
+  "githubSearchPageRepoWatchers": "观察者",
+  "githubSearchPageRepoForks": "分支",
+  "githubSearchPageRepoOpenIssues": "未解决的问题"
+}
