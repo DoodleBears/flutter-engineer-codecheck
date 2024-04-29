@@ -1,18 +1,57 @@
-# 説明
-1. [動画 Folder](https://drive.google.com/drive/folders/1VXvK5dELFEW-RD6UB0F6Yxy36O4wF7V9?usp=sharing)
-2. 50% ~ code is written by `Cursor` (w/gpt-4-turbo-2024-04-09 and claude-3-opus-20240229)
-3. Prototype UI/UX design is done using Figma
-4. Git branching rule
-   1. Issue with corresponding feature branch (or "..." branch)
-### All code done in **16 hours**
-#### Coding: **13.5 hours**
+# 取り組み説明
+## [Video Demos](https://drive.google.com/drive/folders/1VXvK5dELFEW-RD6UB0F6Yxy36O4wF7V9?usp=sharing)
 
-1. Unit Test: **6 hours**
-2. l10n: **1 hour**
-3. View (UI) and Logic (API): **4.5 hours**
-4. Config: **0.5 hour**
+## 概要
+- Prototype UI/UX design is done using Figma
+- Git branching rule
+   - Issue with corresponding feature branch (or "..." branch)
+- Commit rule
+  - atomic commit (as small as possible)
+  - feature based (new feature)
+  - file based (small fix)
+  - message follow template: `tag(range): message`
+- Issue description includes
+  - prototype design image
+  - todo (check list for key implementation)
+  - reference for execute and development
+- Pull request description includes
+  - related issue
+  - what have been done
+  - video demo (if needed)
+- Dependency
+  - `http` for network request
+  - `flutter_riverpod` for state management
+  - `json_annotation` for dataclass generation
+  - `logger` for logging
+- Dev dependency
+  - `mockito` for test
+  - `json_serializable` for dataclass generation
+  - `build_runner` for l10n and dataclass generation
 
-#### Search & Learn: **2.5 hours**
+## Folder Structure
+- `l10n/`: for localization
+- `models/`: for dataclass
+- `pages/`: for View (UI)
+- `state/`: for state management
+- `api/`: for requesting backend
+- `test/`: for test
+- `test_resource/`: for test resource
+
+## About AI Service
+- 50% ~ code is written by `Cursor` (w/gpt-4-turbo-2024-04-09 and claude-3-opus-20240229)
+- ChatGPT (GPT-4) also be used in
+
+## Time Spent (**16 hours**)
+
+### Coding: 13.5 hours
+
+- Unit Test: **6 hours**
+- View (UI) and Logic (API): **4.5 hours**
+- l10n: **1 hour**
+- Config: **1 hour**
+- Refactor: **1 hour**
+
+### Search & Learn: 2.5 hours
 
 
 # 株式会社ゆめみ Flutter エンジニアコードチェック課題
