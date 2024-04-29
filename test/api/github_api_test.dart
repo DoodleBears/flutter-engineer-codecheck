@@ -13,6 +13,18 @@ import 'github_api_test.mocks.dart';
 
 @GenerateMocks([Client])
 void main() {
+  late MockClient client;
+  late GitHubApi gitHubApi;
+  const String baseUrl = 'https://api.github.com/search/repositories';
+  const header = {
+    'Accept': 'application/vnd.github.v3+json',
+  };
+
+  setUp(() {
+    client = MockClient();
+    gitHubApi = GitHubApi(client: client);
+  });
+  
   group("GitHubApi - ", () {
     group("searchRepositories", () {
       test('statues code is 200', () async {
@@ -23,19 +35,14 @@ void main() {
         const perPage = 2;
         const url = '$baseUrl?q=$query&page=$page&per_page=$perPage';
 
-        final client = MockClient();
-        final gitHubApi = GitHubApi(client: client);
-
-        final File file = File('test/api/github_search_result.json');
+        final File file = File('test_resource/github_search_result.json');
         final jsonString = file.readAsStringSync(encoding: utf8);
         final json = jsonDecode(jsonString) as Map<String, dynamic>;
 
         when(
           client.get(
             Uri.parse(url),
-            headers: {
-              'Accept': 'application/vnd.github.v3+json',
-            },
+            headers: header,
           ),
         ).thenAnswer((_) async => Response(
               utf8.decode(utf8.encode(jsonEncode(json))),
@@ -59,21 +66,15 @@ void main() {
 
       test('throws exception when query is empty', () async {
         // Arrange
-        const String baseUrl = 'https://api.github.com/search/repositories';
         const query = '';
         const page = 1;
         const perPage = 2;
         const url = '$baseUrl?q=$query&page=$page&per_page=$perPage';
 
-        final client = MockClient();
-        final gitHubApi = GitHubApi(client: client);
-
         when(
           client.get(
             Uri.parse(url),
-            headers: {
-              'Accept': 'application/vnd.github.v3+json',
-            },
+            headers: header,
           ),
         ).thenAnswer((_) async => Response(
               '{}',
