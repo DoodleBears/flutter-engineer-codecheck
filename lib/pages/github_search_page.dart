@@ -50,7 +50,7 @@ class SearchPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.github_repository),
+        title: Text(S.of(context).githubSearchPageAppBarTitle),
       ),
       body: Stack(
         children: [
@@ -102,20 +102,20 @@ class SearchPage extends ConsumerWidget {
                                                 maxLines: 1,
                                               ),
                                               Text(
-                                                  '${AppLocalizations.of(context)!.github_repository}: ${repo.language ?? AppLocalizations.of(context)!.language_unknown}'),
+                                                  '${S.of(context).githubSearchPageRepoLanguage}: ${repo.language ?? S.of(context).githubSearchPageRepoLanguageUnknown}'),
                                             ],
                                           ),
                                         )
                                       ],
                                     ),
                                     Text(
-                                        '${AppLocalizations.of(context)!.stars}: ${repo.stargazersCount}'),
+                                        '${S.of(context).githubSearchPageRepoStars}: ${repo.stargazersCount}'),
                                     Text(
-                                        '${AppLocalizations.of(context)!.watchers}: ${repo.watchersCount}'),
+                                        '${S.of(context).githubSearchPageRepoWatchers}: ${repo.watchersCount}'),
                                     Text(
-                                        '${AppLocalizations.of(context)!.forks}: ${repo.forksCount}'),
+                                        '${S.of(context).githubSearchPageRepoForks}: ${repo.forksCount}'),
                                     Text(
-                                        '${AppLocalizations.of(context)!.open_issues}: ${repo.openIssuesCount}'),
+                                        '${S.of(context).githubSearchPageRepoOpenIssues}: ${repo.openIssuesCount}'),
                                   ],
                                 )
                               : Text(repo.fullName),
@@ -151,8 +151,8 @@ class SearchPage extends ConsumerWidget {
                         },
                         onSubmitted: (_) => search(ref),
                         decoration: InputDecoration(
-                          labelText: AppLocalizations.of(context)!
-                              .search_github_repositories,
+                          labelText:
+                              S.of(context).githubSearchPageTextFieldHint,
                           labelStyle: const TextStyle(
                             fontSize: 14.0,
                           ),

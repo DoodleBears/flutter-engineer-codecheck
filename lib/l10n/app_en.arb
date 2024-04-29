@@ -1,32 +1,37 @@
 {
   "@@locale": "en",
 
-  "github_repository": "GitHub Repository",
-  "@github_repository": {
+  "githubSearchPageAppBarTitle": "GitHub Repository",
+  "@githubSearchPageAppBarTitle": {
     "description": "Label for GitHub repository identifier."
   },
-  "search_github_repositories": "Search GitHub Repositories",
-  "@search_github_repositories": {
+  "githubSearchPageTextFieldHint": "Search GitHub Repositories",
+  "@githubSearchPageTextFieldHint": {
     "description": "Label for the search bar to find GitHub repositories."
   },
-  "language_unknown": "Unknown",
-  "@language_unknown": {
+  "githubSearchPageRepoLanguage": "Language",
+  "@githubSearchPageRepoLanguage": {
+    "description": "Label for the programming language of the repository."
+  },
+  
+  "githubSearchPageRepoLanguageUnknown": "Unknown",
+  "@githubSearchPageRepoLanguageUnknown": {
     "description": "Text displayed when the programming language of a repository is not specified."
   },
-  "stars": "Stars",
-  "@stars": {
+  "githubSearchPageRepoStars": "Stars",
+  "@githubSearchPageRepoStars": {
     "description": "Label for the number of stars a repository has received."
   },
-  "watchers": "Watchers",
-  "@watchers": {
+  "githubSearchPageRepoWatchers": "Watchers",
+  "@githubSearchPageRepoWatchers": {
     "description": "Label for the number of watchers monitoring a repository."
   },
-  "forks": "Forks",
-  "@forks": {
+  "githubSearchPageRepoForks": "Forks",
+  "@githubSearchPageRepoForks": {
     "description": "Label for the number of forks a repository has."
   },
-  "open_issues": "Open issues",
-  "@open_issues": {
+  "githubSearchPageRepoOpenIssues": "Open issues",
+  "@githubSearchPageRepoOpenIssues": {
     "description": "Label for the number of open issues in a repository."
   }
 }
